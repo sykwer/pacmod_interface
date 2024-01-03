@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(pacmod_interface)
 
+find_package(rclcpp_component_container_callback_isolated REQUIRED)
+
 find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
 
@@ -27,6 +29,9 @@ ament_auto_add_executable(pacmod_interface
   src/pacmod_interface/pacmod_interface.cpp
   src/pacmod_interface/pacmod_interface_node.cpp
 )
+
+ament_target_dependencies(pacmod_interface rclcpp_component_container_callback_isolated)
+target_include_directories(pacmod_interface PRIVATE ${rclcpp_conponent_container_callback_isolated_INCLUDE_DIRS})
 
 ament_auto_add_executable(pacmod_diag_publisher
   src/pacmod_interface/pacmod_diag_publisher.cpp

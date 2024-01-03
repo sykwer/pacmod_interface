@@ -30,6 +30,8 @@
   <depend>tier4_vehicle_msgs</depend>
   <depend>vehicle_info_util</depend>
 
+  <depend>rclcpp_component_container_callback_isolated</depend>
+
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>autoware_lint_common</test_depend>
 
