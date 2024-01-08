@@ -19,8 +19,8 @@
 #include <memory>
 #include <utility>
 
-PacmodInterface::PacmodInterface()
-: Node("pacmod_interface"),
+PacmodInterface::PacmodInterface(const rclcpp::NodeOptions & options)
+: Node("pacmod_interface", options),
   vehicle_info_(vehicle_info_util::VehicleInfoUtil(*this).getVehicleInfo())
 {
   /* setup parameters */
@@ -839,3 +839,6 @@ tier4_api_msgs::msg::DoorStatus PacmodInterface::toAutowareDoorStatusMsg(
 
   return door_status;
 }
+
+#include <rclcpp_components/register_node_macro.hpp>
+RCLCPP_COMPONENTS_REGISTER_NODE(PacmodInterface)

@@ -8,11 +8,13 @@
   <arg name="vehicle_info_param_file" default="$(find-pkg-share vehicle_info_util)/config/vehicle_info.param.yaml"/>
 
   <!-- pacmod interface -->
-  <node pkg="pacmod_interface" exec="pacmod_interface" name="pacmod_interface" output="screen">
-    <param from="$(var pacmod_param_path)"/>
-    <param from="$(var vehicle_info_param_file)"/>
-    <remap from="input/control_mode_request" to="/control/control_mode_request"/>
-  </node>
+  <load_composable_node target="/control/control_container">
+    <composable_node pkg="pacmod_interface" plugin="PacmodInterface" name="pacmod_interface" namespace="">
+      <param from="$(var pacmod_param_path)"/>
+      <param from="$(var vehicle_info_param_file)"/>
+      <remap from="input/control_mode_request" to="/control/control_mode_request"/>
+    </composable_node>
+  </load_composable_node>
 
   <!-- pacmod diagnostics publisher -->
   <node pkg="pacmod_interface" exec="pacmod_diag_publisher" name="pacmod_diag_publisher" output="screen">

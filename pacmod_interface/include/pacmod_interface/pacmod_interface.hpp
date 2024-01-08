@@ -63,7 +63,7 @@ public:
   using ActuationStatusStamped = tier4_vehicle_msgs::msg::ActuationStatusStamped;
   using SteeringWheelStatusStamped = tier4_vehicle_msgs::msg::SteeringWheelStatusStamped;
   using ControlModeCommand = autoware_auto_vehicle_msgs::srv::ControlModeCommand;
-  PacmodInterface();
+  explicit PacmodInterface(const rclcpp::NodeOptions & options);
 
 private:
   typedef message_filters::sync_policies::ApproximateTime<
